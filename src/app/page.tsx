@@ -1,4 +1,5 @@
 import Contact from "@/components/contact";
+import Faq from "@/components/faq";
 import Gallery from "@/components/gallery";
 import Hero from "@/components/hero";
 import Impact from "@/components/impact";
@@ -11,6 +12,7 @@ export default function Home() {
       <NeedSection />
       <Impact />
       <Gallery />
+      <Faq />
       <Contact />
    
     </main>

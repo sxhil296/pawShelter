@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Mulish } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/header'
 import { ThemeProvider } from '@/components/theme-provider'
 import Footer from '@/components/footer'
 
-const inter = Inter({ subsets: ['latin'] })
+const mulish = Mulish({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'PawShelter - Give Them a Place to Call Home',
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
     
-      <body className={inter.className}>
+      <body className={mulish.className}>
       <ThemeProvider
             attribute="class"
             defaultTheme="system"

@@ -48,7 +48,7 @@ export default function Contact() {
             </div>
             <div className="flex items-center">
               <MapPin className="w-5 h-5 text-primary mr-3" />
-              <span>123 Shelter Street, City, Country</span>
+              <span>Spaze iTech Park, Gurugram, India</span>
             </div>
           </div>
         </div>
