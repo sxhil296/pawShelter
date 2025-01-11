@@ -1,9 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    domains: ['images.unsplash.com', 'flowbite.s3.amazonaws.com'],
-  },
+  images:{
+    dangerouslyAllowSVG:true,
+    remotePatterns:[
+      {
+        protocol:"https",
+        hostname:"*"
+      }
+    ]
+   }
 };
 
 export default nextConfig;

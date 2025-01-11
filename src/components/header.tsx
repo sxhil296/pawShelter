@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Dog, Menu, X } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+
 // import { ModeToggle } from "./modeToggle";
 
 const links = [
@@ -15,7 +15,9 @@ const links = [
 ];
 
 export default function Header() {
-  const pathname = usePathname();
+
+
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <header className="fixed w-full bg-background/90 backdrop-blur-sm shadow-sm z-50">
@@ -31,9 +33,7 @@ export default function Header() {
               <Link
                 key={index}
                 href={link.href}
-                className={`text-foreground/80 hover:text-primary ${
-                  pathname === link.href ? "text-primary" : ""
-                }`}
+                className={`text-foreground/80 hover:text-primary`}
               >
                 {link.name}
               </Link>
@@ -66,9 +66,7 @@ export default function Header() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`block px-3 py-2 text-foreground/80 hover:text-primary ${
-                      pathname === link.href ? "text-primary" : ""
-                    }`}
+                    className={`block px-3 py-2 text-foreground/80 hover:text-primary `}
                   >
                     {link.name}
                   </Link>
