@@ -1,6 +1,23 @@
 import { Dog } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import Link from "next/link";
+
+
+const quickLinks = [
+  { name: 'Home', href: '#' },
+  { name: 'Why We Need You', href: '#need' },
+  { name: 'Our Impact', href: '#impact' },
+  {name: "Gallery", href: '#gallery' },
+  { name: 'Contact', href: '#contact' },
+]
+
+const supportLinks = [
+  { name: 'Donate', href: '#' },
+  { name: 'Volunteer', href: '#contact' },
+  { name: 'Adopt', href: '#contact' },
+  { name: 'Partner With Us', href: '#contact' },
+]
 
 export default function Footer() {
   return (
@@ -17,19 +34,17 @@ export default function Footer() {
             <div>
               <h4 className="font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-muted-foreground hover:text-primary">Home</a></li>
-                <li><a href="#need" className="text-muted-foreground hover:text-primary">Why We Need You</a></li>
-                <li><a href="#impact" className="text-muted-foreground hover:text-primary">Our Impact</a></li>
-                <li><a href="#contact" className="text-muted-foreground hover:text-primary">Contact</a></li>
+                {quickLinks.map((link, index) => (
+                  <li key={index}><Link href={link.href} className="text-muted-foreground hover:text-primary">{link.name}</Link></li>
+                ))}
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Support Us</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-muted-foreground hover:text-primary">Donate</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-primary">Volunteer</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-primary">Adopt</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-primary">Partner With Us</a></li>
+                {supportLinks.map((link, index) => (
+                  <li key={index}><Link href={link.href} className="text-muted-foreground hover:text-primary">{link.name}</Link></li>
+                ))}
               </ul>
             </div>
             <div>
@@ -42,7 +57,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="border-t border-border mt-12 pt-8 text-center text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} PawShelter. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} <Link href="#" className="underline">PawShelter</Link>. All rights reserved.</p>
           </div>
         </div>
       </footer>
