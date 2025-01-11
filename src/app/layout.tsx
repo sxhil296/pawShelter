@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { Mulish } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/header'
+
 import { ThemeProvider } from '@/components/theme-provider'
-import Footer from '@/components/footer'
+
 
 const mulish = Mulish({ subsets: ['latin'] })
 
@@ -28,9 +28,9 @@ export default function RootLayout({
             disableTransitionOnChange
           >
 
-      <Header />
+ 
         {children}
-        <Footer />
+   
         </ThemeProvider></body>
     </html>
   )

@@ -1,7 +1,17 @@
+'use client'
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { useState } from "react";
+import PaymentModal from "./paymentModal";
 
 export default function Hero() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  const openModal = () => setIsModalOpen(true);
+
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <section className="pt-16">
         <div className="relative">
@@ -22,11 +32,12 @@ export default function Hero() {
                 Help us provide shelter, care, and love to street dogs. Every donation makes a difference in their lives.
               </p>
               <div className="flex justify-center items-center gap-4 flex-col sm:flex-row">
-                <Button size="lg" className="text-lg">Donate Now</Button>
+                <Button size="lg" className="text-lg" onClick={openModal}>Donate Now</Button>
                 <Button size="lg" variant="secondary" className="text-lg">Learn More</Button>
               </div>
             </div>
           </div>
         </div>
+        <PaymentModal isOpen={isModalOpen} onClose={closeModal} />
       </section>
   )}
