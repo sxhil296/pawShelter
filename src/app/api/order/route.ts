@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     // const keyIndex =1
     // const string = payloadBase64 + "/pg/v1/pay" + salt_key
     // const sha256Hash = crypto.createHash("sha256")
-    console.log(reqData);
+    console.log(payloadBase64);
     return NextResponse.json({ message: "Order Placed Successfully" });
   } catch (error) {
     console.log(error);
