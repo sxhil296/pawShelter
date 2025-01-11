@@ -74,7 +74,7 @@ export default function Header() {
                 </li>
               ))}
             </ul>
-            <div className="px-3 py-2 flex justify-start">
+            <div className="px-3 py-2 flex justify-start" onClick={() => setIsMenuOpen(false)}>
               <ModeToggle />
               </div>
             <div className="px-3 py-2">
