@@ -23,14 +23,9 @@ interface PaymentModalProps {
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  mobileNumber: z
-    .string()
-    .min(10, "Number must be at 10 digits")
-    .transform((val) => Number(val)),
-  amount: z
-    .string()
-    .min(2, "Amount must be at least 2 digits")
-    .transform((val) => Number(val)),
+  mobileNumber: z.string().min(10, "Number must be at 10 digits"),
+
+  amount: z.string().min(2, "Amount must be at least 2 digits"),
 });
 
 export default function PaymentModal({ isOpen, onClose }: PaymentModalProps) {
@@ -39,16 +34,15 @@ export default function PaymentModal({ isOpen, onClose }: PaymentModalProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      mobileNumber: 91,
-      amount: 0,
+      mobileNumber: "",
+      amount: "",
     },
   });
 
   if (!isOpen) return null;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setLoading(true);
-    console.log(values);
+    setLoading(true); 
     const data = {
       name: values.name,
       mobileNumber: values.mobileNumber,
@@ -56,16 +50,24 @@ export default function PaymentModal({ isOpen, onClose }: PaymentModalProps) {
       MUID: "MUID" + Date.now(),
       transactionId: "T" + Date.now(),
     };
-    console.log("Data Recieved:", data);
+    console.log("Data Prepared for Submission:", data);
 
     try {
-      await axios
-        .post(`http://localhost:3000/api/order`, data)
-        .then((response) => {
-          console.log(response);
-        });
-    } catch (error) {
-      console.log(error);
+      const response = await axios.post(
+        `http://localhost:3000/api/order`,
+        data
+      );
+      console.log("Response Received:", response.data);
+      
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error("Axios Error:", error.response?.data || error.message);
+      } else {
+        console.error("Unexpected Error:", error);
+      }
+    } finally {
+      setLoading(false);
+      onClose();
     }
   }
 
@@ -78,7 +80,7 @@ export default function PaymentModal({ isOpen, onClose }: PaymentModalProps) {
       ></div>
 
       {/* Modal Content */}
-      <div className="fixed inset-0 flex justify-center items-center z-50">
+      <div className="fixed inset-0 flex justify-center items-center z-50 px-6">
         <div className="bg-muted p-6 rounded-lg shadow-lg w-96">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-semibold">Make a Donation</h2>
@@ -109,11 +111,7 @@ export default function PaymentModal({ isOpen, onClose }: PaymentModalProps) {
                   <FormItem>
                     <FormLabel>Mobile Number</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Mobile Number"
-                        {...field}
-                        type="number"
-                      />
+                      <Input placeholder="Mobile Number" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -126,7 +124,7 @@ export default function PaymentModal({ isOpen, onClose }: PaymentModalProps) {
                   <FormItem>
                     <FormLabel>Amount</FormLabel>
                     <FormControl>
-                      <Input placeholder="Amount" {...field} type="number" />
+                      <Input placeholder="Amount" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

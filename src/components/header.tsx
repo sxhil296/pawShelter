@@ -43,7 +43,7 @@ export default function Header() {
                 </Link>
               ))}
               <ModeToggle />
-              <Button onClick={openModal}>Donate Now</Button> {/* Open the modal when clicked */}
+              <Button onClick={openModal}>Donate Now</Button>
             </div>
 
             <div className="md:hidden">
@@ -88,7 +88,6 @@ export default function Header() {
         )}
       </header>
 
-      {/* Pass isModalOpen state as the isOpen prop */}
       <PaymentModal isOpen={isModalOpen} onClose={closeModal} />
     </>
   );
