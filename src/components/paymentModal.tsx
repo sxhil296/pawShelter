@@ -34,7 +34,6 @@ const formSchema = z.object({
 });
 
 export default function PaymentModal({ isOpen, onClose }: PaymentModalProps) {
-  if (!isOpen) return null;
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,6 +43,8 @@ export default function PaymentModal({ isOpen, onClose }: PaymentModalProps) {
       amount: 0,
     },
   });
+
+  if (!isOpen) return null;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true);

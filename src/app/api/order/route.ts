@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
-let salt_key = "96434309-7796-489d-ab56988a6076";
-let merchant_id = "PGTESTPAYUAT86";
+const salt_key = "96434309-7796-489d-ab56988a6076";
+const merchant_id = "PGTESTPAYUAT86";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   try {
     const reqData = await req.json();
 
@@ -26,9 +26,9 @@ export async function POST(req: Request, res: Response) {
 
     const payload = JSON.stringify(data);
     const payloadBase64 = Buffer.from(payload).toString("base64");
-    const keyIndex =1
-    const string = payloadBase64 + "/pg/v1/pay" + salt_key
-    const sha256Hash = crypto.createHash("sha256")
+    // const keyIndex =1
+    // const string = payloadBase64 + "/pg/v1/pay" + salt_key
+    // const sha256Hash = crypto.createHash("sha256")
     console.log(reqData);
     return NextResponse.json({ message: "Order Placed Successfully" });
   } catch (error) {
