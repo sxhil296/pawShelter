@@ -4,13 +4,14 @@ import { Button } from "./ui/button";
 import { Dog, Menu, X } from "lucide-react";
 import Link from "next/link";
 
-// import { ModeToggle } from "./modeToggle";
+import { ModeToggle } from "./modeToggle";
 
 const links = [
   { name: "Home", href: "#" },
   { name: "Why We Need You", href: "#need" },
   { name: "Our Impact", href: "#impact" },
   { name: "Gallery", href: "#gallery" },
+  { name: "FAQ", href: "#faq" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -38,7 +39,7 @@ export default function Header() {
                 {link.name}
               </Link>
             ))}
-            {/* <ModeToggle /> */}
+            <ModeToggle />
             <Button>Donate Now</Button>
           </div>
 
@@ -73,9 +74,9 @@ export default function Header() {
                 </li>
               ))}
             </ul>
-            {/* <div className="px-3 py-2 flex justify-start">
+            <div className="px-3 py-2 flex justify-start">
               <ModeToggle />
-              </div> */}
+              </div>
             <div className="px-3 py-2">
               <Button className="w-full">Donate Now</Button>
             </div>
